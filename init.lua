@@ -1012,6 +1012,18 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     config = function()
       require('nvim-tree').setup()
+
+      -- Open NvimTree automatically when starting with a directory (e.g. `nvim .`)
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function(data)
+          if vim.fn.isdirectory(data.file) ~= 1 then
+            return
+          end
+
+          vim.cmd.cd(data.file)
+          require('nvim-tree.api').tree.open()
+        end,
+      })
     end,
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<CR>', mode = 'n', desc = 'Toggle NvimTree' },
