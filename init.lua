@@ -1057,6 +1057,17 @@ require('lazy').setup({
     end,
     config = function()
       require('nvim-tree').setup()
+
+      -- Close NvimTree if it's the last window open
+      local close_nvim_tree_if_last = vim.api.nvim_create_augroup('CloseNvimTreeIfLast', { clear = true })
+      vim.api.nvim_create_autocmd('BufEnter', {
+        group = close_nvim_tree_if_last,
+        callback = function()
+          if vim.fn.winnr('$') == 1 and vim.bo.filetype == 'NvimTree' then
+            vim.cmd.quit()
+          end
+        end,
+      })
     end,
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<CR>', mode = 'n', desc = 'Toggle NvimTree' },
