@@ -1011,6 +1011,10 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-tree.lua',
     config = function()
+      -- Disable netrw to avoid conflicts with nvim-tree
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
       require('nvim-tree').setup()
 
       -- Open NvimTree automatically when starting with a directory (e.g. `nvim .`)
