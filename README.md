@@ -30,7 +30,13 @@ https://github.com/yuru7/HackGen
 PowerShellの設定を開いて、外観のフォントフェイスを変更する。
 
 ### telescopeの日本語文字化けを直す
-
+1. Powershellで以下を実行
+> notepad $PROFILE
+2. 末尾に以下を追記
+> chcp 65001
+> $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
+3. Powershellで以下を実行
+> winget install 'ripgrep msvc'
 
 
 ### Powershell上でgitの補完を有効にする
