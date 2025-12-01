@@ -1011,8 +1011,8 @@ require('lazy').setup({
       require('bufferline').setup(opts)
     end,
     keys = {
-      { '<S-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
-      { '<S-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '<C-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
+      { '<C-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
     },
   },
 
@@ -1035,6 +1035,7 @@ require('lazy').setup({
   },
   {
     'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup()
     end,
