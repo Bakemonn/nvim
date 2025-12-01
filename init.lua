@@ -1017,7 +1017,9 @@ require('lazy').setup({
 
       require('nvim-tree').setup()
 
-      -- Open NvimTree automatically when starting with a directory (e.g. `nvim .`)
+      -- Open NvimTree automatically when starting with a directory (e.g. `nvim .`).
+      -- The callback only triggers when the argument is a directory, switches Neovim's
+      -- working directory to it, and then opens the tree UI.
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function(data)
           if vim.fn.isdirectory(data.file) ~= 1 then
