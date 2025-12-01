@@ -161,6 +161,9 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
+-- Enable true color support for better colors in UI plugins
+vim.opt.termguicolors = true
+
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
@@ -991,6 +994,28 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        diagnostics = 'nvim_lsp',
+        offsets = {
+          { filetype = 'NvimTree', text = 'File Explorer', highlight = 'Directory', separator = true },
+        },
+        show_close_icon = false,
+      },
+    },
+    config = function(_, opts)
+      require('bufferline').setup(opts)
+    end,
+    keys = {
+      { '<C-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
+      { '<C-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+    },
+  },
+
   -- lazy.nvim
   {
     'folke/noice.nvim',
@@ -1010,8 +1035,39 @@ require('lazy').setup({
   },
   {
     'nvim-tree/nvim-tree.lua',
+    name = 'nvim-tree',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = { 'NvimTreeOpen', 'NvimTreeClose', 'NvimTreeToggle', 'NvimTreeFocus' },
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function(data)
+          if vim.fn.isdirectory(data.file) ~= 1 then
+            return
+          end
+
+          require('lazy').load({ plugins = { 'nvim-tree' } })
+
+          vim.cmd.cd(data.file)
+          require('nvim-tree.api').tree.open()
+        end,
+      })
+    end,
     config = function()
       require('nvim-tree').setup()
+
+      -- Close NvimTree if it's the last window open
+      local close_nvim_tree_if_last = vim.api.nvim_create_augroup('CloseNvimTreeIfLast', { clear = true })
+      vim.api.nvim_create_autocmd('BufEnter', {
+        group = close_nvim_tree_if_last,
+        callback = function()
+          if vim.fn.winnr('$') == 1 and vim.bo.filetype == 'NvimTree' then
+            vim.cmd.quit()
+          end
+        end,
+      })
     end,
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<CR>', mode = 'n', desc = 'Toggle NvimTree' },
