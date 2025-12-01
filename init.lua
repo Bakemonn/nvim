@@ -1035,8 +1035,26 @@ require('lazy').setup({
   },
   {
     'nvim-tree/nvim-tree.lua',
+    name = 'nvim-tree',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = { 'NvimTreeOpen', 'NvimTreeClose', 'NvimTreeToggle', 'NvimTreeFocus' },
+    init = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function(data)
+          if vim.fn.isdirectory(data.file) ~= 1 then
+            return
+          end
+
+          require('lazy').load({ plugins = { 'nvim-tree' } })
+
+          vim.cmd.cd(data.file)
+          require('nvim-tree.api').tree.open()
+        end,
+      })
+    end,
     config = function()
       require('nvim-tree').setup()
     end,
