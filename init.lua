@@ -1048,13 +1048,14 @@ require('lazy').setup({
             return
           end
 
-          require('lazy').load({ plugins = { 'nvim-tree' } })
+          require('lazy').load { plugins = { 'nvim-tree' } }
 
           vim.cmd.cd(data.file)
           require('nvim-tree.api').tree.open()
         end,
       })
     end,
+
     config = function()
       require('nvim-tree').setup()
 
@@ -1063,7 +1064,7 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('BufEnter', {
         group = close_nvim_tree_if_last,
         callback = function()
-          if vim.fn.winnr('$') == 1 and vim.bo.filetype == 'NvimTree' then
+          if vim.fn.winnr '$' == 1 and vim.bo.filetype == 'NvimTree' then
             vim.cmd.quit()
           end
         end,
@@ -1071,6 +1072,32 @@ require('lazy').setup({
     end,
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<CR>', mode = 'n', desc = 'Toggle NvimTree' },
+    },
+  },
+
+  -- You can add your own plugins here or in other files in this directory!
+  --  I promise not to create any merge conflicts in this directory :)
+  --
+  -- See the kickstart.nvim README for more information
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {},
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = { 'markdown' },
+    build = 'cd app && npm install',
+    init = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 1
+    end,
+    keys = {
+      { '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', desc = 'Toggle Markdown preview' },
     },
   },
 }, {

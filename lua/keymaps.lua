@@ -12,3 +12,11 @@ vim.keymap.set('n', 'J', '10j')
 vim.keymap.set('n', 'K', '10k')
 vim.keymap.set('n', 'H', '0')
 vim.keymap.set('n', 'L', '$')
+
+vim.keymap.set('n', '<leader>mh', function()
+  vim.cmd '!pandoc % -o %:r.html --standalone'
+end, { desc = 'Export Markdown to HTML' })
+
+vim.keymap.set('n', '<leader>of', function()
+  vim.cmd '!start %'
+end, { desc = 'Open File' })
