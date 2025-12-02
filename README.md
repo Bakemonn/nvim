@@ -56,5 +56,11 @@ PowerShellを管理者権限で開き、実行ポリシーを変更
 > Set-ExecutionPolicy RemoteSigned
 
 ### MarkdownをHTMLに変換する
-
+管理者権限でPowershellを実行する。
+下記を実行する。
+> choco install pandoc
+markdownファイルを開いた状態で下記を実行する。
+> <leader>mh
+htmlに変換せずにプレビューする場合は下記を実行する。
+> <leader>mp
 
