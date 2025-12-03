@@ -59,3 +59,7 @@ end, { desc = 'Export Markdown to HTML' })
 vim.keymap.set('n', '<leader>of', function()
   vim.cmd '!start %'
 end, { desc = 'Open File' })
+
+vim.keymap.set('n', '<leader>on', function()
+  vim.cmd ':e c:/work/notes/'
+end, { desc = 'Open Notes' })
