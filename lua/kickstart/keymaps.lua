@@ -36,3 +36,26 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+--
+-- local map = vim.api.nvim_set_keymap
+-- local opts = { noremap = true, silent = true }
+
+-- ノーマルモードでのキーマップ
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
+
+vim.keymap.set('i', 'jk', '<ESC>')
+vim.keymap.set('i', 'jj', '<ESC>')
+
+vim.keymap.set('n', 'J', '10j')
+vim.keymap.set('n', 'K', '10k')
+vim.keymap.set('n', 'H', '0')
+vim.keymap.set('n', 'L', '$')
+
+vim.keymap.set('n', '<leader>mh', function()
+  vim.cmd '!pandoc % -o %:r.html --standalone'
+end, { desc = 'Export Markdown to HTML' })
+
+vim.keymap.set('n', '<leader>of', function()
+  vim.cmd '!start %'
+end, { desc = 'Open File' })
