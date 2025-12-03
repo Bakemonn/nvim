@@ -60,6 +60,18 @@ vim.keymap.set('n', '<leader>of', function()
   vim.cmd '!start %'
 end, { desc = 'Open File' })
 
-vim.keymap.set('n', '<leader>on', function()
-  vim.cmd ':e c:/work/notes/'
-end, { desc = 'Open Notes' })
+-- 特定フォルダに移動
+vim.keymap.set('n', '<leader>mn', function()
+  vim.cmd 'cd c:/work/notes/'
+  print 'move to: c:/work/notes/'
+end)
+
+vim.keymap.set('n', '<leader>mg', function()
+  vim.cmd 'cd c:/work/git/'
+  print 'move to: c:/work/git/'
+end)
+
+vim.keymap.set('n', '<leader>md', function()
+  vim.cmd 'cd c:/work/documents/'
+  print 'move to: c:/work/documents/'
+end)
