@@ -64,14 +64,14 @@ end, { desc = 'Open File' })
 vim.keymap.set('n', '<leader>mn', function()
   vim.cmd 'cd c:/work/notes/'
   print 'move to: c:/work/notes/'
-end)
+end, { desc = 'move to notes folder' })
 
 vim.keymap.set('n', '<leader>mg', function()
   vim.cmd 'cd c:/work/git/'
   print 'move to: c:/work/git/'
-end)
+end, { desc = 'move to git folder'})
 
 vim.keymap.set('n', '<leader>md', function()
   vim.cmd 'cd c:/work/documents/'
   print 'move to: c:/work/documents/'
-end)
+end, { desc = 'move to documents folder'})
