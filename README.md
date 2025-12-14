@@ -64,3 +64,23 @@ markdownファイルを開いた状態で下記を実行する。
 htmlに変換せずにプレビューする場合は下記を実行する。
 > <leader>mp
 
+### C言語にて定義に飛べるようにする
+
+1. Masonを開く
+> :Mason
+2. 一覧からclangdを探してインストール(iキー)
+3. インストール後、Neovimを再起動して.cファイルを開き、以下のコマンドを実行
+> :LspInfo
+4. Active Clientsにclangdが出ていることを確認する。
+5. プロジェクトのトップに.git or compile_commands.jsonが存在していることを確認する。
+6. 存在しない場合はcompile_flags.txtを置く。中身は下記。
+> -std=c11
+> -I.
+7. もしincludeディレクトリがあるなら下記を追記
+> -Iinclude
+8. もしコンパイラ定義必要なら
+> -DDEBUG
+> -DMY_FEATURE=1
+
+
+

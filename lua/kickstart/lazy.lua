@@ -495,6 +495,12 @@ require('lazy').setup({
             },
           },
         },
+        clangd = {
+          cmd = {
+            'clangd',
+            '--query-driver=C:/ProgramData/mingw64/mingw64/bin/gcc.exe',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
