@@ -61,17 +61,17 @@ vim.keymap.set('n', '<leader>of', function()
 end, { desc = 'Open File' })
 
 -- 特定フォルダに移動
-vim.keymap.set('n', '<leader>mn', function()
-  vim.cmd 'cd c:/work/notes/'
-  print 'move to: c:/work/notes/'
-end, { desc = 'move to notes folder' })
+--vim.keymap.set('n', '<leader>mn', function()
+--  vim.cmd 'cd c:/work/notes/'
+--  print 'move to: c:/work/notes/'
+--end, { desc = 'move to notes folder' })
 
-vim.keymap.set('n', '<leader>mg', function()
-  vim.cmd 'cd c:/work/git/'
-  print 'move to: c:/work/git/'
-end, { desc = 'move to git folder'})
+--vim.keymap.set('n', '<leader>mg', function()
+--  vim.cmd 'cd c:/work/git/'
+--  print 'move to: c:/work/git/'
+--end, { desc = 'move to git folder'})
 
-vim.keymap.set('n', '<leader>md', function()
-  vim.cmd 'cd c:/work/documents/'
-  print 'move to: c:/work/documents/'
-end, { desc = 'move to documents folder'})
+--vim.keymap.set('n', '<leader>md', function()
+--  vim.cmd 'cd c:/work/documents/'
+--  print 'move to: c:/work/documents/'
+--end, { desc = 'move to documents folder'})
