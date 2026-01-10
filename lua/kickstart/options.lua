@@ -84,8 +84,9 @@ vim.opt.termguicolors = true
 vim.o.confirm = true
 
 vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
 -- ▼▼▼ WSL用クリップボード設定 ▼▼▼
 if vim.fn.has("wsl") == 1 then
     if vim.fn.executable("wl-copy") == 0 then
