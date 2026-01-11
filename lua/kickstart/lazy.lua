@@ -497,9 +497,9 @@ require('lazy').setup({
         },
         clangd = {
           --cmd = {
-           -- 'clangd',
-           -- '--query-driver=C:/ProgramData/mingw64/mingw64/bin/gcc.exe',
-         -- },
+          -- 'clangd',
+          -- '--query-driver=C:/ProgramData/mingw64/mingw64/bin/gcc.exe',
+          -- },
         },
       }
 
@@ -791,7 +791,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -815,8 +815,8 @@ require('lazy').setup({
       require('bufferline').setup(opts)
     end,
     keys = {
-      { '<C-h>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
-      { '<C-l>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '<C-Tab>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
+      { '<C-S-Tab>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
     },
   },
 
