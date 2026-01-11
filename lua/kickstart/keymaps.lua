@@ -56,8 +56,11 @@ vim.keymap.set('n', '<leader>mh', function()
   vim.cmd '!pandoc % -o %:r.html --standalone'
 end, { desc = 'Export Markdown to HTML' })
 
+-- SLパスをWindowsパスに変換して開く
 vim.keymap.set('n', '<leader>of', function()
-  vim.cmd '!start %'
+  -- %:p はファイルの絶対パス
+  -- wslpath -w でWindows形式のパスに変換
+  vim.cmd '!cmd.exe /c start "" "$(wslpath -w "%:p")"'
 end, { desc = 'Open File' })
 
 -- 特定フォルダに移動
